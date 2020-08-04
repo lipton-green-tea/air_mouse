@@ -123,24 +123,24 @@ class tracker:
 
     def begin_tracking(self):
         def track(self):
-        old_time = time.time()
-        while(True):
-            if GPIO.input(10) == GPIO.HIGH:
-                print("resetting offsets")
-                self.imu.set_offsets()
-                self.x_velocity = 0
-                self.y_velocity = 0
-                self.z_velocity = 0
-            if GPIO.input(12) == GPIO.HIGH:
-                break
-            
-            self.x_acceleration,self.y_acceleration,self.z_acceleration = self.imu.read_acc()
-            #print('%8s' % str(x) + '%8s' % str(y) + '%8s' % str(z))
-            new_time = time.time()
-            time_diff = new_time - old_time
-            old_time = new_time
-            self.update_mouse_pos(self, time_diff)
-            print(self.pkf.predicted_state[1],self.pkf.predicted_state[2])
+            old_time = time.time()
+            while(True):
+                if GPIO.input(10) == GPIO.HIGH:
+                    print("resetting offsets")
+                    self.imu.set_offsets()
+                    self.x_velocity = 0
+                    self.y_velocity = 0
+                    self.z_velocity = 0
+                if GPIO.input(12) == GPIO.HIGH:
+                    break
+                
+                self.x_acceleration,self.y_acceleration,self.z_acceleration = self.imu.read_acc()
+                #print('%8s' % str(x) + '%8s' % str(y) + '%8s' % str(z))
+                new_time = time.time()
+                time_diff = new_time - old_time
+                old_time = new_time
+                self.update_mouse_pos(self, time_diff)
+                print(self.pkf.predicted_state[1],self.pkf.predicted_state[2])
 
 
     
